@@ -50,8 +50,8 @@ if __name__ == "__main__":
     # 示例漏洞数据
     # 示例漏洞数据（原2个 + 新增2个，共4个）
 # 完整漏洞列表（原2个+新增2个）
-vulnerabilities = [
-    {
+    vulnerabilities = [
+     {
         "id": "reentrancy_001",
         "title": "重入攻击",
         "description": "在外部调用前未更新状态，允许攻击者重复调用函数提取资金。",
@@ -79,16 +79,15 @@ vulnerabilities = [
         "code_example": "require(block.timestamp > startTime);",
         "fix": "避免在关键逻辑中使用时间戳，或使用更安全的时间源"
     }
-]  
+] 
+    for vuln in vulnerabilities:
+        kb.add_vulnerability(vuln)
+        # 测试检索
+        results = kb.search("合约中资金被重复提取")
+        print("检索结果：")
+        for i, doc in enumerate(results['documents'][0]):
+            print(f"\n结果 {i+1}:")
+            print(f"标题: {results['metadatas'][0][i]['title']}")
+            print(f"描述: {doc}")
+            print(f"修复: {results['metadatas'][0][i]['fix']}")
 
-for vuln in vulnerabilities:
-    kb.add_vulnerability(vuln)
-
-    # 测试检索
-    results = kb.search("合约中资金被重复提取")
-    print("检索结果：")
-    for i, doc in enumerate(results['documents'][0]):
-        print(f"\n结果 {i+1}:")
-        print(f"标题: {results['metadatas'][0][i]['title']}")
-        print(f"描述: {doc}")
-        print(f"修复: {results['metadatas'][0][i]['fix']}")
