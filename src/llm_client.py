@@ -1,6 +1,10 @@
 import requests
 import json
-# 导入合约解析和知识库模块
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from contract_parser import ContractParser
 from knowledge_base_builder import KnowledgeBaseBuilder
 

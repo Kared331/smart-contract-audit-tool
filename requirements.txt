@@ -1,2 +1,8 @@
 requests
 python-dotenv
+slither-analyzer
+streamlit
+chromadb
+pyyaml
+setuptools
+py-solc-x
